@@ -1,0 +1,111 @@
+﻿body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(img1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: unset;
+}
+h1{
+    text-align:center;
+    text-size-adjust: 150%;
+}
+p {
+    text-align:center;
+}
+.izpiti {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    
+    width: 250px;
+    border-radius: 15%;
+}
+
+/* Navigation bar*/
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+    .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+        /*END*/
+
+.ml3 {
+    font-weight: 900;
+    font-size: 3.5em;
+}
+
+/*Weather*/
+.weather {
+    position: absolute;
+    right: 10px;
+    top: 90px;
+}
+/*END*/
+
+
+/*Style of the table*/
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    border: 3px solid #ffcc00;
+    width: 50%;
+    background-image: url(izpitibackground.jpg);
+}
+
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+    /*END*/
+
+ /* Here is the style for the JavaScript Clock */
+ .styling {
+        
+    color: black;
+    font: bold 16px MS Sans Serif;
+    padding: 3px;
+}
+/*---------------------------------*/
+
+.countdown {
+    color: #fff;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #0fa,
+    0 0 82px #0fa,
+    0 0 92px #0fa,
+    0 0 102px #0fa,
+    0 0 151px #0fa;
+}

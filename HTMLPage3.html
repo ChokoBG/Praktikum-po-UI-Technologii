@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="StyleSheet3.css">
+    <title>Tools</title>
+</head>
+<body>
+
+
+    <!-- Here is the top nav bar-->
+    <div class="topnav">
+        <div class="dropdown">
+            <a class="active" href="HTMLPage2.html"> Home</a>
+            <a href="#news">Новини</a>
+            <a href="HTMLPage4.html">Контакти</a>
+            <a href="#exams">Материали</a>
+            <a href="HTMLPage3.html">Инструменти</a>
+            <a href="#about">Помощ</a>
+            <a href="HTMLPage1.html">Вход</a>
+        </div>
+    </div>
+    <h1><b>Тук ще намерите полезни инструменти и калкулатори</b></h1>
+    <!--This is the Binary Script Tool-->
+
+    <p>1. Двоичен Калкулатор</p>
+    <b>Впишете цяло число:</b>
+
+    <input type="text" name="deci" id="deci" size="15" maxlength="15" />
+    <input type="button" value="Конвертирай" onclick="dec2bin()" />
+    <br><br>
+    <div id="result"></div>
+
+    <script type="text/javascript">
+
+        function dec2bin() {
+            var x = document.getElementById("deci").value;
+            if ((/[^0-9]/g.test(x)) || x == "") {
+                alert("You must enter an integer decimal number!");
+                document.getElementById("deci").value = "";
+                document.getElementById("deci").focus();
+                return false;
+            }
+            x = parseInt(x);
+            var bin = x.toString(2);
+            var hex = x.toString(16).toUpperCase();
+            var octal = x.toString(8);
+
+
+            var figs = "The binary representation of " + x + " is " + bin + "<br>";
+            figs = figs + "The hexadecimal representation of " + x + " is " + hex + "<br>";
+            figs = figs + "The octal representation of " + x + " is " + octal + "<br>";
+
+            document.getElementById("result").innerHTML = figs;
+        }
+    </script>
+
+    <!--END of Binary Script Tool-->
+    <p>&nbsp;</p>
+
+    <!-- Number Sorter Script -->
+    <p> 2. Сортировач на данни</p>
+    <form method="POST" name="sorter">
+        <table border="0" cellspacing="5" cellpadding="0" width="100%">
+            <tr>
+                <td width="100%">
+                    <div align="center">
+                        <center>
+                            <p><b> Моля, въведете данните в полето отдолу</b></p>
+                            <p>
+                                <script>
+
+                                    /*
+                                    Data sorter script
+                                    */
+
+
+                                    function sortit(a, b) {
+                                        return (a - b)
+                                    }
+
+                                    function sortvalues(param) {
+                                        if (window.print || (document.images && !document.all)) {
+                                            var inputvalues = document.sorter.sorter2.value.split(" ")
+                                            if (param == 0)
+                                                inputvalues.sort()
+                                            else
+                                                inputvalues.sort(sortit)
+                                            document.sorter.sorter2.value = ''
+                                            for (i = 0; i < inputvalues.length - 1; i++)
+                                                document.sorter.sorter2.value = document.sorter.sorter2.value + inputvalues[i] + " "
+                                            document.sorter.sorter2.value += inputvalues[inputvalues.length - 1]
+                                        }
+                                        else
+                                            alert("You need NS 3+ or IE 5+ to use this program!")
+                                    }
+                                </script>
+                                <textarea rows="10" name="sorter2" cols="50" wrap="virtual"></textarea><br>
+                                <input type="button" value="Sort alphabetically" name="B4" onClick="sortvalues(0)"> <input type="button" value="Sort numerically" name="B5" onClick="sortvalues(1)"> <input type="reset" value="Reset" name="B6">
+                        </center>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <!-- END of Number Sorter Script-->
+    <!-- Start of chmod Calculator-->
+
+    <script type="text/javascript">
+
+        function octalchange() {
+            var val = document.chmod.t_total.value;
+            var ownerbin = parseInt(val.charAt(0)).toString(2);
+            while (ownerbin.length < 3) { ownerbin = "0" + ownerbin; };
+            var groupbin = parseInt(val.charAt(1)).toString(2);
+            while (groupbin.length < 3) { groupbin = "0" + groupbin; };
+            var otherbin = parseInt(val.charAt(2)).toString(2);
+            while (otherbin.length < 3) { otherbin = "0" + otherbin; };
+            document.chmod.owner4.checked = parseInt(ownerbin.charAt(0));
+            document.chmod.owner2.checked = parseInt(ownerbin.charAt(1));
+            document.chmod.owner1.checked = parseInt(ownerbin.charAt(2));
+            document.chmod.group4.checked = parseInt(groupbin.charAt(0));
+            document.chmod.group2.checked = parseInt(groupbin.charAt(1));
+            document.chmod.group1.checked = parseInt(groupbin.charAt(2));
+            document.chmod.other4.checked = parseInt(otherbin.charAt(0));
+            document.chmod.other2.checked = parseInt(otherbin.charAt(1));
+            document.chmod.other1.checked = parseInt(otherbin.charAt(2));
+            calc_chmod(1);
+        };
+
+        function calc_chmod(nototals) {
+            var users = new Array("owner", "group", "other");
+            var totals = new Array("", "", "");
+            var syms = new Array("", "", "");
+
+            for (var i = 0; i < users.length; i++) {
+                var user = users[i];
+                var field4 = user + "4";
+                var field2 = user + "2";
+                var field1 = user + "1";
+                //var total = "t_" + user;
+                var symbolic = "sym_" + user;
+                var number = 0;
+                var sym_string = "";
+
+                if (document.chmod[field4].checked == true) { number += 4; }
+                if (document.chmod[field2].checked == true) { number += 2; }
+                if (document.chmod[field1].checked == true) { number += 1; }
+
+                if (document.chmod[field4].checked == true) {
+                    sym_string += "r";
+                } else {
+                    sym_string += "-";
+                }
+                if (document.chmod[field2].checked == true) {
+                    sym_string += "w";
+                } else {
+                    sym_string += "-";
+                }
+                if (document.chmod[field1].checked == true) {
+                    sym_string += "x";
+                } else {
+                    sym_string += "-";
+                }
+
+                //if (number == 0) { number = ""; }
+                //document.chmod[total].value =
+                totals[i] = totals[i] + number;
+                syms[i] = syms[i] + sym_string;
+
+            };
+            if (!nototals) document.chmod.t_total.value = totals[0] + totals[1] + totals[2];
+            document.chmod.sym_total.value = "-" + syms[0] + syms[1] + syms[2];
+        }
+        window.onload = octalchange
+    </script>
+    <p>3. chmod Калкулатор</p>
+    <form name="chmod">
+        <TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" style="font:normal 12px Verdana" ;>
+            <TR ALIGN="LEFT" VALIGN="MIDDLE">
+                <TD>Permissions: </TD>
+                <TD><input type="text" name="t_total" value="751" size="4" onKeyUp="octalchange()"> </TD>
+                <TD><input type="text" name="sym_total" value="" size="12" READONLY="1" STYLE='border: 0px none; font-family: "Courier New", Courier, mono;'></TD>
+            </TR>
+        </TABLE>
+        <BR>
+        <table cellpadding="2" cellspacing="0" border="0" style="font:normal 12px Verdana">
+            <tr bgcolor="#333333">
+                <td WIDTH="60" align="left"> </td>
+                <td WIDTH="55" align="center" style="color:white">
+                    <b>
+                        owner
+                    </b>
+                </td>
+                <td WIDTH="55" align="center" style="color:white">
+                    <b>
+                        group
+                    </b>
+                </td>
+                <td WIDTH="55" align="center" style="color:white">
+                    <b>
+                        other
+                        </b>
+                </td>
+            </tr>
+            <tr bgcolor="#dddddd">
+                <td WIDTH="60" align="left" nowrap BGCOLOR="#FFFFFF">read</td>
+                <td WIDTH="55" align="center" bgcolor="#EEEEEE">
+                    <input type="checkbox" name="owner4" value="4" onclick="calc_chmod()">
+                </td>
+                <td WIDTH="55" align="center" bgcolor="#ffffff">
+                    <input type="checkbox" name="group4" value="4" onclick="calc_chmod()">
+                </td>
+                <td WIDTH="55" align="center" bgcolor="#EEEEEE">
+                    <input type="checkbox" name="other4" value="4" onclick="calc_chmod()">
+                </td>
+            </tr>
+            <tr bgcolor="#dddddd">
+                <td WIDTH="60" align="left" nowrap BGCOLOR="#FFFFFF">write</td>
+                <td WIDTH="55" align="center" bgcolor="#EEEEEE">
+                    <input type="checkbox" name="owner2" value="2" onclick="calc_chmod()">
+                </td>
+                <td WIDTH="55" align="center" bgcolor="#ffffff">
+                    <input type="checkbox" name="group2" value="2" onclick="calc_chmod()">
+                </td>
+                <td WIDTH="55" align="center" bgcolor="#EEEEEE">
+                    <input type="checkbox" name="other2" value="2" onclick="calc_chmod()">
+                </td>
+            </tr>
+            <tr bgcolor="#dddddd">
+                <td WIDTH="60" align="left" nowrap BGCOLOR="#FFFFFF">execute</td>
+                <td WIDTH="55" align="center" bgcolor="#EEEEEE">
+                    <input type="checkbox" name="owner1" value="1" onclick="calc_chmod()">
+                </td>
+                <td WIDTH="55" align="center" bgcolor="#ffffff">
+                    <input type="checkbox" name="group1" value="1" onclick="calc_chmod()">
+                </td>
+                <td WIDTH="55" align="center" bgcolor="#EEEEEE">
+                    <input type="checkbox" name="other1" value="1" onclick="calc_chmod()">
+                </td>
+            </tr>
+        </table>
+
+    </form>
+    <!-- END of chmod Calculator-->
+    <!-- Start of Scientific Calculator-->
+    <script LANGUAGE="JavaScript">
+
+        function addChar(input, character) {
+            if (input.value == null || input.value == "0")
+                input.value = character
+            else
+                input.value += character
+        }
+
+        function cos(form) {
+            form.display.value = Math.cos(form.display.value);
+        }
+
+        function sin(form) {
+            form.display.value = Math.sin(form.display.value);
+        }
+
+        function tan(form) {
+            form.display.value = Math.tan(form.display.value);
+        }
+
+        function sqrt(form) {
+            form.display.value = Math.sqrt(form.display.value);
+        }
+
+        function ln(form) {
+            form.display.value = Math.log(form.display.value);
+        }
+
+        function exp(form) {
+            form.display.value = Math.exp(form.display.value);
+        }
+
+        function deleteChar(input) {
+            input.value = input.value.substring(0, input.value.length - 1)
+        }
+
+        function changeSign(input) {
+            if (input.value.substring(0, 1) == "-")
+                input.value = input.value.substring(1, input.value.length)
+            else
+                input.value = "-" + input.value
+        }
+
+        function compute(form) {
+            form.display.value = eval(form.display.value)
+        }
+
+        function square(form) {
+            form.display.value = eval(form.display.value) * eval(form.display.value)
+        }
+
+        function checkNum(str) {
+            for (var i = 0; i < str.length; i++) {
+                var ch = str.substring(i, i + 1)
+                if (ch < "0" || ch > "9") {
+                    if (ch != "/" && ch != "*" && ch != "+" && ch != "-" && ch != "."
+                        && ch != "(" && ch != ")") {
+                        alert("invalid entry!")
+                        return false
+                    }
+                }
+            }
+            return true
+        }
+    </script>
+    <br />
+    <p>4. Калкулатор</p>
+
+    <FORM NAME="sci-calc">
+        <TABLE CELLSPACING="0" CELLPADDING="1">
+            <TR>
+                <TD COLSPAN="5" ALIGN="center"><INPUT NAME="display" VALUE="0" SIZE="28" MAXLENGTH="25"></TD>
+            </TR>
+            <TR>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE=" exp " ONCLICK="if (checkNum(this.form.display.value)) { exp(this.form) }"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="  7  " ONCLICK="addChar(this.form.display, '7')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="  8  " ONCLICK="addChar(this.form.display, '8')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="  9  " ONCLICK="addChar(this.form.display, '9')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="   /   " ONCLICK="addChar(this.form.display, '/')"></TD>
+            </TR>
+            <TR>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="   ln   " ONCLICK="if (checkNum(this.form.display.value)) { ln(this.form) }"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="  4  " ONCLICK="addChar(this.form.display, '4')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="  5  " ONCLICK="addChar(this.form.display, '5')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="  6  " ONCLICK="addChar(this.form.display, '6')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="   *   " ONCLICK="addChar(this.form.display, '*')"></TD>
+            </TR>
+            <TR>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE=" sqrt " ONCLICK="if (checkNum(this.form.display.value)) { sqrt(this.form) }"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="  1  " ONCLICK="addChar(this.form.display, '1')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="  2  " ONCLICK="addChar(this.form.display, '2')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="  3  " ONCLICK="addChar(this.form.display, '3')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="   -   " ONCLICK="addChar(this.form.display, '-')"></TD>
+            </TR>
+            <TR>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="  sq  " ONCLICK="if (checkNum(this.form.display.value)) { square(this.form) }"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="  0  " ONCLICK="addChar(this.form.display, '0')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="   .  " ONCLICK="addChar(this.form.display, '.')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE=" +/- " ONCLICK="changeSign(this.form.display)"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="   +  " ONCLICK="addChar(this.form.display, '+')"></TD>
+            </TR>
+            <TR>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="    (    " ONCLICK="addChar(this.form.display, '(')"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="cos" ONCLICK="if (checkNum(this.form.display.value)) { cos(this.form) }"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE=" sin" ONCLICK="if (checkNum(this.form.display.value)) { sin(this.form) }"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE=" tan" ONCLICK="if (checkNum(this.form.display.value)) { tan(this.form) }"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="   )   " ONCLICK="addChar(this.form.display, ')')"></TD>
+            </TR>
+            <TR>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="clear" ONCLICK="this.form.display.value = 0 "></TD>
+                <TD ALIGN="center" COLSPAN="3"><INPUT TYPE="button" VALUE="backspace" ONCLICK="deleteChar(this.form.display)"></TD>
+                <TD ALIGN="center"><INPUT TYPE="button" VALUE="enter" NAME="enter" ONCLICK="if (checkNum(this.form.display.value)) { compute(this.form) }"></TD>
+            </TR>
+        </TABLE>
+    </FORM>
+
+    <!-- END of Scientific Calculator -->
+
+    <h3 style="text-align:center;">За повече идеи какво да добавим, моля свържете се с нас на нашият Discord Канал</h3>
+</body>
+</html>

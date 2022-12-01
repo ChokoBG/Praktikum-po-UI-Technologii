@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="StyleSheet2.css">
+    <link rel="script" href="Script2.js">
+    <title>ИКН - Начало</title>
+    <link rel="shortcut icon" href="Homeiconpage2.png" />
+</head>
+<body>
+
+    <!-- Here is the Weather Bar-->
+    <div class="weather">
+        <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+        <div class="elfsight-app-c228bfe6-a9e5-4f86-8d86-f9b141b26da3"></div>
+    </div>
+    <!-- Here is the top nav bar-->
+    <div class="topnav">
+        <div class="dropdown">
+            <a class="active" href="HTMLPage2.html"> Home</a>
+            <a href="#news">Новини</a>
+            <a href="HTMLPage4.html">Контакти</a>
+            <a href="#exams">Материали</a>
+            <a href="HTMLPage3.html">Инструменти</a>
+            <a href="#about">Помощ</a>
+            <a href="HTMLPage1.html">Вход</a>
+        </div>
+    </div>
+
+    <script>
+        /*Current date script */
+        var mydate = new Date()
+        var year = mydate.getYear()
+        if (year < 1000)
+            year += 1900
+        var day = mydate.getDay()
+        var month = mydate.getMonth()
+        var daym = mydate.getDate()
+        if (daym < 10)
+            daym = "0" + daym
+        var dayarray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+        var montharray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+        document.write("<small><font color='000000' face='Arial'><b>" + dayarray[day] + ", " + montharray[month] + " " + daym + ", " + year + "</b></font></small>")
+
+    </script>
+
+
+
+    <span id=tick2>
+    </span>
+
+    <script>
+        /* Clock Script */
+        function show2() {
+            if (!document.all && !document.getElementById)
+                return
+            thelement = document.getElementById ? document.getElementById("tick2") : document.all.tick2
+            var Digital = new Date()
+            var hours = Digital.getHours()
+            var minutes = Digital.getMinutes()
+            var seconds = Digital.getSeconds()
+            var dn = "PM"
+            if (hours < 12)
+                dn = "AM"
+            if (hours > 12)
+                hours = hours - 12
+            if (hours == 0)
+                hours = 12
+            if (minutes <= 9)
+                minutes = "0" + minutes
+            if (seconds <= 9)
+                seconds = "0" + seconds
+            var ctime = hours + ":" + minutes + ":" + seconds + " " + dn
+            thelement.innerHTML = "<b style='font-size:14;color:black;'>" + ctime + "</b>"
+            setTimeout("show2()", 1000)
+        }
+        window.onload = show2
+    </script>
+    <marquee width="100%" direction="left" height="20" bgcolor="white" onmousedown="this.stop();" onmouseup="this.start();">
+        Скъпи колеги за повече информация, моля пишете в нашият Discord Канал!
+    </marquee>
+
+    <h1>Добре дошли в сайта на специалност ИКН</h1><br /><br /><br /><br />
+
+    <img src="UniBit.jpg" alt="UniBit" width="100%" height="333"> 
+
+    <p><b>Тук ще намерите полезна за вас информация относно изпити,дисциплини,новини,курсови работи и др. </b></p><br />
+
+    <div class="izpiti">
+        <p><b>Изпити Зимен Семестър</b></p>
+    </div>
+    <table align="center">
+        <tr style="margin-top:10px; margin-left:10px;">
+            <th>Дисциплина</th>
+            <th>Дата</th>
+            <th>Среда</th>
+        </tr>
+        <tr>
+            <td>Визуални среди за програмиране</td>
+            <td>05.12.2022</td>
+            <td>Онлайн</td>
+        </tr>
+        <tr>
+            <td>Технически основи на комуникационните и информационни технологии </td>
+            <td>15.12.2022</td>
+            <td>Присъствено</td>
+        </tr>
+        <tr>
+            <td>Проектиране и работа с бази от данни</td>
+            <td>19.12.2022</td>
+            <td>Онлайн</td>
+        </tr>
+        <tr>
+            <td>Приложна Математика за разработчици</td>
+            <td>19.12.2022</td>
+            <td>Присъствено</td>
+        </tr>
+        <tr>
+            <td>Мобилни Технологии</td>
+            <td>18.12.2022</td>
+            <td>Онлайн</td>
+        </tr>
+        <tr>
+            <td>Системи за Графичен Дизайн</td>
+            <td>14.12.2022</td>
+            <td>Онлайн</td>
+        </tr>
+        <tr>
+            <td>Практикум Сървъри и Сториджи</td>
+            <td>13.12.2022</td>
+            <td>Присъствено</td>
+        </tr>
+    </table>
+    <div class="countdown">
+    <h2 style="text-align:center"><b>Оставащото време до началото на сесията е:</b></h2>
+    <!-- Below is the Script for the revers Countdown -->
+    
+    <p style="font-size: 60px" id="demo"></p>
+    </div>
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Dec 4, 2022 23:59:59").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+
+            // If the count down is over, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
